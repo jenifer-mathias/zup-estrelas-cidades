@@ -226,15 +226,13 @@ public List<Cidade> pesquisaPorSigla(String estado) {
 
 	}
 
-// PAREI NA 5!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-
  // Crie um método que recebe a sigla de um estado e retorna a quantidade de cidades daquele estado.
 
 public List<Cidade> retornaQtdCidades(String estado) {
 	
 	List<Cidade> cidades = new ArrayList<>();
 	
-		String sql = " select * from cidade c where c.estado = '?' ";
+		String sql = " select count(*) from cidade c where c.estado = '?' ";
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -258,11 +256,12 @@ public List<Cidade> retornaQtdCidades(String estado) {
 
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println("Erro ao listar cidades");
+			System.out.println("Erro ao listar quantidade de cidades desse estado");
 			System.out.println(e.getMessage());
 		}
 		return cidades;
-
 	}
+
+// crie um método privado que seja genérico e utilize em seus outros métodos de listagem
 
 }
